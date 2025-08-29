@@ -42,5 +42,8 @@
       "category-missing": "Please select a category",
       "generic": "An error occurred. Failed to create transaction."
     }
+  },
+  "drawer": {
+    "logout": "Log out"
   }
 }

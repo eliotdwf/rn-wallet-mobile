@@ -2,10 +2,13 @@ import { useClerk } from '@clerk/clerk-expo'
 import * as Linking from 'expo-linking'
 import {Alert, Text, TouchableOpacity} from 'react-native'
 import {Ionicons} from "@expo/vector-icons";
-import {styles} from "@/assets/styles/home.styles";
+import {styles} from "@/assets/styles/drawer.styles";
 import {COLORS} from "@/constants/colors";
+import {useTranslation} from "react-i18next";
 
 export const SignOutButton = () => {
+
+    const {t} = useTranslation();
     // Use `useClerk()` to access the `signOut()` function
     const { signOut } = useClerk()
     const handleSignOut = async () => {
@@ -25,7 +28,10 @@ export const SignOutButton = () => {
     }
     return (
         <TouchableOpacity style={styles.logoutButton} onPress={handleSignOut}>
-            <Ionicons name={'log-out-outline'} size={22} color={COLORS.text} />
+            <Ionicons name={'log-out-outline'} size={22} color='#ef0000' />
+            <Text style={styles.logOutButtonText}>
+                {t('drawer.logout')}
+            </Text>
         </TouchableOpacity>
     )
 }

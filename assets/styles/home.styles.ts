@@ -110,7 +110,7 @@ export const styles = StyleSheet.create({
     },
     balanceStatItem: {
         flex: 1,
-        alignItems: "start",
+        alignItems: "flex-start",
     },
     languageButton: {
         borderColor: COLORS.primary,
@@ -144,7 +144,7 @@ export const styles = StyleSheet.create({
     },
     sectionTitleContainer: {
         gap: 5,
-        justifyContent: 'start',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         flexDirection: 'row'
     },

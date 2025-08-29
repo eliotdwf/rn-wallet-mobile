@@ -42,5 +42,8 @@
       "category-missing": "Veuillez sélectionner une catégorie",
       "generic": "Une erreur s'est produite. La création de la transaction a échoué."
     }
+  },
+  "drawer": {
+    "logout": "Me déconnecter"
   }
 }

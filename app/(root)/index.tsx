@@ -1,11 +1,11 @@
 import {useUser} from '@clerk/clerk-expo'
-import {router} from 'expo-router'
+import {router, useNavigation} from 'expo-router'
 import {Alert, FlatList, RefreshControl, Text, TouchableOpacity, View} from 'react-native'
 import {SignOutButton} from "@/components/SignOutButton";
 import {useTransactions} from "@/hooks/useTransactions";
 import {useEffect, useState} from "react";
 import Loader from "@/components/Loader";
-import {dropdownStyles, styles} from "@/assets/styles/home.styles";
+import {styles} from "@/assets/styles/home.styles";
 import {Image} from "expo-image";
 import {Ionicons} from "@expo/vector-icons";
 import BalanceCard from "@/components/BalanceCard";
@@ -13,33 +13,15 @@ import {TransactionItem} from "@/components/TransactionItem";
 import NoTransactionsFound from "@/components/NoTransactionsFound";
 import {useTranslation} from "react-i18next";
 import {flags} from "@/constants/flags-images";
-import LanguageButton from "@/components/LanguageButton";
-import DropDownPicker from 'react-native-dropdown-picker';
 import i18next from "i18next";
+import {COLORS} from "@/constants/colors";
+import {DrawerActions} from "@react-navigation/native";
 
 export default function Page() {
+    const navigation = useNavigation();
     const { t } = useTranslation();
     const { user } = useUser()
     const [refreshing, setRefreshing] = useState(false);
-
-    const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(i18next.language);
-    const [items, setItems] = useState([
-        {
-            label: '',
-            value: 'en',
-            icon: () => <Image source={require('../../assets/images/flag-EN.png')} style={{
-                height: 25, width: 25, resizeMode: 'contain', borderRadius: 10
-            }}/>
-        },
-        {
-            label: '',
-            value: 'fr',
-            icon: () => <Image source={require('../../assets/images/flag-FR.png')} style={{
-                height: 25, width: 25, resizeMode: 'contain', borderRadius: 10
-            }}/>
-        }
-    ]);
 
     const onRefresh = async () => {
         setRefreshing(true);
@@ -98,11 +80,16 @@ export default function Page() {
                             <Image source={flags[i18next.language]}
                                    contentFit={'contain'}
                                    style={{
-                                       height: 40, width: 40, resizeMode: 'contain', borderRadius: 15
+                                       height: 40, width: 40, borderRadius: 15
                                    }}
                             />
                         </TouchableOpacity>
-                        <SignOutButton />
+                        <TouchableOpacity
+                            style={styles.logoutButton}
+                            onPress={() => navigation.dispatch(DrawerActions.toggleDrawer)}
+                        >
+                            <Ionicons name={'menu-outline'} size={22} color={COLORS.primary} />
+                        </TouchableOpacity>
                     </View>
                 </View>
 
