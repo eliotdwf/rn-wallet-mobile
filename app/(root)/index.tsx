@@ -11,8 +11,11 @@ import {Ionicons} from "@expo/vector-icons";
 import BalanceCard from "@/components/BalanceCard";
 import {TransactionItem} from "@/components/TransactionItem";
 import NoTransactionsFound from "@/components/NoTransactionsFound";
+import {useTranslation} from "react-i18next";
+import LanguageButton from "@/components/LanguageButton";
 
 export default function Page() {
+    const { t } = useTranslation();
     const { user } = useUser()
     const [refreshing, setRefreshing] = useState(false);
 
@@ -57,7 +60,7 @@ export default function Page() {
                             contentFit={"contain"}
                         />
                         <View style={styles.welcomeContainer}>
-                            <Text style={styles.welcomeText}>Welcome,</Text>
+                            <Text style={styles.welcomeText}>{t('welcome')},</Text>
                             <Text style={styles.usernameText}>
                                 {user?.emailAddresses[0]?.emailAddress.split("@")[0]}
                             </Text>
@@ -65,19 +68,31 @@ export default function Page() {
                     </View>
 
                     <View style={styles.headerRight}>
-                        <TouchableOpacity
-                            style={styles.addButton}
-                            onPress={() => router.push('/create')}
-                        >
-                            <Ionicons name={"add"} size={20} color={"#fff"} />
-                            <Text style={styles.addButtonText}>Add</Text>
-                        </TouchableOpacity>
                         <SignOutButton />
                     </View>
                 </View>
+
+                <View style={{justifyContent: 'center', gap: 10, paddingBottom: 25, flexDirection: 'row'}}>
+                    <LanguageButton
+                        languageCode={'en'}
+                        languageLabel={'English'} />
+                    <LanguageButton
+                        languageCode={'fr'}
+                        languageLabel={'Français'} />
+                </View>
+
                 <BalanceCard summary={summary} />
                 <View style={styles.transactionsHeaderContainer}>
-                    <Text style={styles.sectionTitle}>Recent transactions</Text>
+                    <Text style={styles.sectionTitle}>
+                        {t('home.recent-transactions')} ({transactions.length})
+                    </Text>
+                    <TouchableOpacity
+                        style={styles.addButton}
+                        onPress={() => router.push('/create')}
+                    >
+                        <Ionicons name={"add"} size={20} color={"#fff"} />
+                       {/* <Text style={styles.addButtonText}>{t('header.add-button')}</Text>*/}
+                    </TouchableOpacity>
                 </View>
             </View>
 

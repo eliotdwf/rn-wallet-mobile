@@ -1,0 +1,41 @@
+{
+  "welcome": "Bienvenue",
+  "header": {
+    "add-button": "Ajouter"
+  },
+  "home": {
+    "recent-transactions": "Transactions récentes",
+    "total-balance": "Solde total"
+  },
+  "income": "Revenu",
+  "expenses": "Dépenses",
+  "categories": {
+    "food-drinks": "Nourriture & boissons",
+    "shopping": "Shopping",
+    "transportation": "Transports",
+    "entertainment": "Loisirs",
+    "bills": "Factures",
+    "income": "Revenu",
+    "other": "Autre"
+  },
+  "create": {
+    "title": "Ajouter une transaction",
+    "save-button": "Enregistrer",
+    "expense": "Dépense",
+    "income": "Revenu",
+    "transaction-title-input-placeholder": "Titre de la transaction",
+    "category-title": "Catégorie",
+    "creation-successful": "Transaction créée avec succès !"
+  },
+  "error": "Erreur",
+  "errors": {
+    "create": {
+      "title-missing": "Veuillez entrer un titre de transaction",
+      "title-too-long": "Le titre de la transaction ne peut pas dépasser 255 caractères",
+      "amount-invalid": "Veuillez entrer un montant valide supérieur à 0",
+      "amount-above-1000000": "Le montant ne peut pas dépasser 1 000 000",
+      "category-missing": "Veuillez sélectionner une catégorie",
+      "generic": "Une erreur s'est produite. La création de la transaction a échoué."
+    }
+  }
+}

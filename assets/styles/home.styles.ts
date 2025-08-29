@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         marginBottom: 20,
         paddingHorizontal: 0,
-        paddingVertical: 12,
+        paddingVertical: 8,
     },
     headerLeft: {
         flex: 1,
@@ -60,7 +60,7 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
+        shadowOpacity: 0.3,
         shadowRadius: 4,
         elevation: 3,
     },
@@ -112,6 +112,23 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
     },
+    languageButton: {
+        borderColor: COLORS.primary,
+        borderWidth: 2,
+        backgroundColor: COLORS.card,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: "center",
+        gap: 10,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        borderRadius: 15
+    },
+    activeLanguageButton: {
+        borderStyle: undefined,
+        borderWidth: 0,
+        backgroundColor: COLORS.primary,
+    },
     statDivider: {
         borderRightWidth: 1,
         borderColor: COLORS.border,
@@ -129,7 +146,6 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: "600",
         color: COLORS.text,
-        marginBottom: 15,
     },
     transactionCard: {
         backgroundColor: COLORS.card,
@@ -252,7 +268,6 @@ export const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         marginBottom: 10,
-        paddingBottom: 5,
     },
     transactionsList: {
         flex: 1,

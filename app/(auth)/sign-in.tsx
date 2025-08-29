@@ -19,6 +19,7 @@ export default function Page() {
 
     // Handle the submission of the sign-in form
     const onSignInPress = async () => {
+        setError('');
         if (!isLoaded) return
 
         // Start the sign-in process using the email and password provided
@@ -40,7 +41,7 @@ export default function Page() {
             }
         } catch (err) {
             switch ((err as any).errors?.[0]?.code) {
-                case 'form_identifier_not_found' :
+                case 'form_identifier_not_found':
                 case 'form_password_incorrect':
                     setError("Invalid credentials. Please try again.")
                     break;
@@ -52,7 +53,7 @@ export default function Page() {
             }
             // See https://clerk.com/docs/custom-flows/error-handling
             // for more info on error handling
-            console.error(JSON.stringify(err, null, 2))
+            //console.error(JSON.stringify(err, null, 2))
         }
     }
 

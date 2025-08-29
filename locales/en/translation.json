@@ -1,0 +1,41 @@
+{
+  "welcome": "Welcome",
+  "header": {
+    "add-button": "Add"
+  },
+  "home": {
+    "recent-transactions": "Recent transactions",
+    "total-balance": "Total balance"
+  },
+  "income": "Income",
+  "expenses": "Expenses",
+  "categories": {
+    "food-drinks": "Food & Drinks",
+    "shopping": "Shopping",
+    "transportation": "Transportation",
+    "entertainment": "Entertainment",
+    "bills": "Bills",
+    "income": "Income",
+    "other": "Other"
+  },
+  "create": {
+    "title": "Create Transaction",
+    "save-button": "Save",
+    "expense": "Expense",
+    "income": "Income",
+    "transaction-title-input-placeholder": "Transaction title",
+    "category-title": "Category",
+    "creation-successful": "Transaction created successfully!"
+  },
+  "error": "Error",
+  "errors": {
+    "create": {
+      "title-missing": "Please enter a transaction title",
+      "title-too-long": "The transaction title cannot exceed 255 characters",
+      "amount-invalid": "Please enter a valid amount greater than 0",
+      "amount-above-1000000": "The amount cannot exceed 1,000,000",
+      "category-missing": "Please select a category",
+      "generic": "An error occurred. Failed to create transaction."
+    }
+  }
+}

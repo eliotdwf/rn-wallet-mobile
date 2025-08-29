@@ -7,19 +7,23 @@ import {Ionicons} from "@expo/vector-icons";
 import {COLORS} from "@/constants/colors";
 import {Image} from "expo-image";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import {useState} from "react";
 
 export default function SignUpScreen() {
     const {isLoaded, signUp, setActive} = useSignUp()
     const router = useRouter()
 
-    const [emailAddress, setEmailAddress] = React.useState('')
-    const [password, setPassword] = React.useState('')
-    const [pendingVerification, setPendingVerification] = React.useState(false)
-    const [code, setCode] = React.useState('')
-    const [error, setError] = React.useState<string>('')
+    const [emailAddress, setEmailAddress] = useState('')
+    const [password, setPassword] = useState('')
+    const [pendingVerification, setPendingVerification] = useState(false)
+    const [code, setCode] = useState('')
+    const [error, setError] = useState<string>('')
+    const [createAccountButtonDisabled, setCreateAccountButtonDisabled] = useState(false)
 
     // Handle submission of sign-up form
     const onSignUpPress = async () => {
+        setError("");
+        setCreateAccountButtonDisabled(true);
         if (!isLoaded) return
 
         // Start sign-up process using email and password provided
@@ -37,12 +41,22 @@ export default function SignUpScreen() {
             // and capture OTP code
             setPendingVerification(true)
         } catch (err) {
+            setCreateAccountButtonDisabled(false);
             switch ((err as any).errors?.[0]?.code) {
+                case 'form_param_format_invalid':
+                    setError("Please enter a valid email address.")
+                    break;
                 case 'form_identifier_exists':
                     setError("User already exists. Please sign in instead.")
                     break;
+                case 'form_password_length_too_short':
+                    setError('Password must be at least 8 characters long.')
+                    break;
+                case 'form_password_pwned':
+                    setError('This password has been compromised in a data breach. Please choose a different one.')
+                    break;
                 default:
-                    console.error(JSON.stringify(err, null, 2))
+                    //console.error(JSON.stringify(err, null, 2))
                     setError("An error occurred. Please try again.")
             }
         }
@@ -50,6 +64,7 @@ export default function SignUpScreen() {
 
     // Handle submission of verification form
     const onVerifyPress = async () => {
+        setError('')
         if (!isLoaded) return
 
         try {
@@ -77,7 +92,7 @@ export default function SignUpScreen() {
             else {
                 // See https://clerk.com/docs/custom-flows/error-handling
                 // for more info on error handling
-                console.error(JSON.stringify(err, null, 2))
+                //console.error(JSON.stringify(err, null, 2))
                 const errorMessage = (err as any).errors?.[0]?.longMessage || ""
                 setError(`An error occured : ${errorMessage}`)
             }
@@ -150,7 +165,7 @@ export default function SignUpScreen() {
                     placeholderTextColor={"#9A8478"}
                     onChangeText={(password) => setPassword(password)}
                 />
-                <TouchableOpacity onPress={onSignUpPress} style={styles.button}>
+                <TouchableOpacity onPress={onSignUpPress} style={[styles.button, createAccountButtonDisabled && {opacity: 0.5}]} disabled={createAccountButtonDisabled}>
                     <Text style={styles.buttonText}>Continue</Text>
                 </TouchableOpacity>
                 <View style={styles.footerContainer}>
