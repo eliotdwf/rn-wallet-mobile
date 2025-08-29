@@ -5,7 +5,12 @@
   },
   "home": {
     "recent-transactions": "Recent transactions",
-    "total-balance": "Total balance"
+    "total-balance": "Total balance",
+    "delete": "Delete",
+    "delete-message": "Are you sure you want to delete this transaction?",
+    "delete-cancel": "Cancel",
+    "delete-failed": "Failed to delete transaction",
+    "delete-successful": "Transaction deleted successfully"
   },
   "income": "Income",
   "expenses": "Expenses",

@@ -106,10 +106,11 @@ export const styles = StyleSheet.create({
     balanceStats: {
         flexDirection: "row",
         justifyContent: "space-between",
+        gap: 10
     },
     balanceStatItem: {
         flex: 1,
-        alignItems: "center",
+        alignItems: "start",
     },
     languageButton: {
         borderColor: COLORS.primary,

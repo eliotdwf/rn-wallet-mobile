@@ -1,5 +1,6 @@
 import {useCallback, useState} from "react";
 import {Alert} from "react-native";
+import {useTranslation} from "react-i18next";
 
 export interface TransactionsSummary {
     balance: string;
@@ -19,6 +20,7 @@ export interface Transaction {
 const API_URL = `${process.env.EXPO_PUBLIC_API_BASE_URL}/api/transactions`;
 
 export const useTransactions = (userId: string) => {
+    const {t} = useTranslation();
     const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [summary, setSummary] = useState<TransactionsSummary>({
         balance: '0',
@@ -76,14 +78,14 @@ export const useTransactions = (userId: string) => {
                 method: 'DELETE'
             });
             if(!response.ok) {
-                throw new Error(`Failed to delete transaction ${transactionId}`);
+                throw new Error(t('Failed to delete transaction'));
             }
             // Refresh data after deletion
             await loadData();
-            Alert.alert("Success", "Transaction deleted successfully");
+            Alert.alert("Success", t('home.delete-successful'));
         } catch (e) {
             console.error("Error deleting transaction:", e);
-            Alert.alert("Error", (e as any).message ?? "Failed to delete transaction");
+            Alert.alert("Error", (e as any).message ?? t('home.delete-error'));
         }
     }
 

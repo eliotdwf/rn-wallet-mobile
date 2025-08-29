@@ -4,7 +4,6 @@ import {ActivityIndicator, Alert, Text, TextInput, TouchableOpacity, View} from 
 import {router} from "expo-router";
 import {styles} from "@/assets/styles/create.styles";
 import {Ionicons} from "@expo/vector-icons";
-import {SignOutButton} from "@/components/SignOutButton";
 import {COLORS} from "@/constants/colors";
 import {useTranslation} from "react-i18next";
 
@@ -63,7 +62,6 @@ const CreateScreen = () => {
                 amount: formattedAmount,
                 category: selectedCategory,
             }
-            console.log(body);
             const response = await fetch(endpoint,
                 {
                     method: "POST",

@@ -5,7 +5,12 @@
   },
   "home": {
     "recent-transactions": "Transactions récentes",
-    "total-balance": "Solde total"
+    "total-balance": "Solde total",
+    "delete": "Supprimer",
+    "delete-message": "Êtes vous sûr de vouloir supprimer cette transaction ?",
+    "delete-cancel": "Annuler",
+    "delete-failed": "La suppression de la transaction a échoué",
+    "delete-successful": "Transaction supprimée avec succès"
   },
   "income": "Revenu",
   "expenses": "Dépenses",

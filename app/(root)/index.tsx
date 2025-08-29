@@ -60,9 +60,9 @@ export default function Page() {
     }, [loadData]);
 
     const handleDelete = (id: number) => {
-        Alert.alert("Delete", "Are you sure you want to delete the transaction ?", [
-            {text: "Cancel", style: "cancel"},
-            {text: "Delete", style: "destructive",onPress: () => deleteTransaction(id)}
+        Alert.alert(t('home.delete'), t('home.delete-message'), [
+            {text: t('home.delete-cancel'), style: "cancel"},
+            {text: t('home.delete'), style: "destructive", onPress: () => deleteTransaction(id)}
         ])
     };
 
