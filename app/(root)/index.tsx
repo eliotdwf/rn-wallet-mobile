@@ -5,19 +5,41 @@ import {SignOutButton} from "@/components/SignOutButton";
 import {useTransactions} from "@/hooks/useTransactions";
 import {useEffect, useState} from "react";
 import Loader from "@/components/Loader";
-import {styles} from "@/assets/styles/home.styles";
+import {dropdownStyles, styles} from "@/assets/styles/home.styles";
 import {Image} from "expo-image";
 import {Ionicons} from "@expo/vector-icons";
 import BalanceCard from "@/components/BalanceCard";
 import {TransactionItem} from "@/components/TransactionItem";
 import NoTransactionsFound from "@/components/NoTransactionsFound";
 import {useTranslation} from "react-i18next";
+import {flags} from "@/constants/flags-images";
 import LanguageButton from "@/components/LanguageButton";
+import DropDownPicker from 'react-native-dropdown-picker';
+import i18next from "i18next";
 
 export default function Page() {
     const { t } = useTranslation();
     const { user } = useUser()
     const [refreshing, setRefreshing] = useState(false);
+
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(i18next.language);
+    const [items, setItems] = useState([
+        {
+            label: '',
+            value: 'en',
+            icon: () => <Image source={require('../../assets/images/flag-EN.png')} style={{
+                height: 25, width: 25, resizeMode: 'contain', borderRadius: 10
+            }}/>
+        },
+        {
+            label: '',
+            value: 'fr',
+            icon: () => <Image source={require('../../assets/images/flag-FR.png')} style={{
+                height: 25, width: 25, resizeMode: 'contain', borderRadius: 10
+            }}/>
+        }
+    ]);
 
     const onRefresh = async () => {
         setRefreshing(true);
@@ -68,24 +90,41 @@ export default function Page() {
                     </View>
 
                     <View style={styles.headerRight}>
+                        <TouchableOpacity onPress={() => {
+                            i18next.language === 'en'
+                                ? i18next.changeLanguage('fr')
+                                : i18next.changeLanguage('en')
+                        }}>
+                            <Image source={flags[i18next.language]}
+                                   contentFit={'contain'}
+                                   style={{
+                                       height: 40, width: 40, resizeMode: 'contain', borderRadius: 15
+                                   }}
+                            />
+                        </TouchableOpacity>
                         <SignOutButton />
                     </View>
                 </View>
 
-                <View style={{justifyContent: 'center', gap: 10, paddingBottom: 25, flexDirection: 'row'}}>
+                {/*<View style={{justifyContent: 'center', gap: 10, paddingBottom: 25, flexDirection: 'row'}}>
                     <LanguageButton
                         languageCode={'en'}
                         languageLabel={'English'} />
                     <LanguageButton
                         languageCode={'fr'}
                         languageLabel={'Français'} />
-                </View>
+                </View>*/}
 
                 <BalanceCard summary={summary} />
                 <View style={styles.transactionsHeaderContainer}>
-                    <Text style={styles.sectionTitle}>
-                        {t('home.recent-transactions')} ({transactions.length})
-                    </Text>
+                    <View style={styles.sectionTitleContainer}>
+                        <Text style={styles.sectionTitleText}>
+                            {t('home.recent-transactions')}
+                        </Text>
+                        {transactions.length > 0 &&
+                            <Text style={styles.sectionTitleCount}>({transactions.length})</Text>
+                        }
+                    </View>
                     <TouchableOpacity
                         style={styles.addButton}
                         onPress={() => router.push('/create')}

@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        marginBottom: 20,
+        marginBottom: 5,
         paddingHorizontal: 0,
         paddingVertical: 8,
     },
@@ -53,9 +53,8 @@ export const styles = StyleSheet.create({
     },
     addButton: {
         backgroundColor: COLORS.primary,
-        paddingHorizontal: 12,
-        paddingVertical: 10,
-        borderRadius: 24,
+        padding: 7,
+        borderRadius: 20,
         flexDirection: "row",
         alignItems: "center",
         shadowColor: "#000",
@@ -75,7 +74,7 @@ export const styles = StyleSheet.create({
         backgroundColor: COLORS.card,
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
+        shadowOpacity: 0.5,
         shadowRadius: 2,
         elevation: 1,
     },
@@ -142,10 +141,19 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: "600",
     },
-    sectionTitle: {
+    sectionTitleContainer: {
+        gap: 5,
+        justifyContent: 'start',
+        alignItems: 'center',
+        flexDirection: 'row'
+    },
+    sectionTitleText: {
         fontSize: 18,
         fontWeight: "600",
         color: COLORS.text,
+    },
+    sectionTitleCount: {
+        fontWeight: '400', fontSize: 14
     },
     transactionCard: {
         backgroundColor: COLORS.card,
@@ -277,3 +285,14 @@ export const styles = StyleSheet.create({
         paddingBottom: 20,
     },
 });
+
+export const dropdownStyles = StyleSheet.create({
+    container: {
+        marginTop: 100,
+        paddingHorizontal: 20,
+        zIndex: 1000,
+    },
+    dropdown: {
+        borderColor: '#ccc',
+    },
+})
